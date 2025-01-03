@@ -1,0 +1,9 @@
+{
+  "bussManagerApp": {
+    "TransactionType": {
+      "null": "",
+      "INCOME": "Receita",
+      "EXPENSE": "Despesa"
+    }
+  }
+}

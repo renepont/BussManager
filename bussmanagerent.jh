@@ -1,0 +1,60 @@
+
+entity Company {
+	name String required
+    nif Integer required
+}
+
+entity Transaction {
+	value Double required
+    date LocalDate required
+    type TransactionType required
+}
+
+
+/**
+ * The Employee entity.
+ */
+entity Employee {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String required
+	lastName String required
+	email String
+	phoneNumber String
+	startDate LocalDate
+    endDate LocalDate
+	salary Double
+}
+
+entity Customer {
+	name String required
+    contractStartDate LocalDate required
+    contractEndDate LocalDate
+}
+
+enum TransactionType {
+	INCOME (Receita), 
+    EXPENSE (Despesa)
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Company to Employee{company}
+    Company to Transaction{company}
+    Company to Customer{company}
+}
+
+
+// Set pagination options
+paginate Employee with infinite-scroll
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

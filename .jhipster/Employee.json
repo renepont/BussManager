@@ -1,0 +1,53 @@
+{
+  "annotations": {
+    "changelogDate": "20250103153836"
+  },
+  "applications": "*",
+  "documentation": "The Employee entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "The firstname attribute.",
+      "fieldName": "firstName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "salary",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "Employee",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "company",
+      "relationshipName": "company",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

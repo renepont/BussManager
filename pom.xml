@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.renepont.bussmanager</groupId>
-    <artifactId>buss-manager</artifactId>
+    <artifactId>BussManager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Buss Manager</name>
@@ -293,6 +293,12 @@
             <artifactId>testcontainers</artifactId>
             <scope>test</scope>
         </dependency>
+    
+      <dependency>
+        <groupId>com.dimafeng</groupId>
+        <artifactId>testcontainers-scala-postgresql_3</artifactId>
+        <version>0.41.5</version>
+      </dependency>
     </dependencies>
 
     <build>

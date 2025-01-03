@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (company(); as companyRef) {
+      <div>
+        <h2 data-cy="companyDetailsHeading"><span jhiTranslate="bussManagerApp.company.detail.title">Company</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ companyRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.company.name">Name</span></dt>
+          <dd>
+            <span>{{ companyRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.company.nif">Nif</span></dt>
+          <dd>
+            <span>{{ companyRef.nif }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/company', companyRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

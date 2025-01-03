@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-customer-heading" data-cy="CustomerCreateUpdateHeading" jhiTranslate="bussManagerApp.customer.home.createOrEditLabel">
+        Criar ou editar Customer
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="bussManagerApp.customer.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nameRef = editForm.get('name')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="bussManagerApp.customer.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          @if (nameRef.invalid && (nameRef.dirty || nameRef.touched)) {
+            <div>
+              @if (editForm.get('name')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let contractStartDateRef = editForm.get('contractStartDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_contractStartDate" jhiTranslate="bussManagerApp.customer.contractStartDate"
+            >Contract Start Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_contractStartDate"
+              data-cy="contractStartDate"
+              type="text"
+              class="form-control"
+              name="contractStartDate"
+              ngbDatepicker
+              #contractStartDateDp="ngbDatepicker"
+              formControlName="contractStartDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="contractStartDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (contractStartDateRef.invalid && (contractStartDateRef.dirty || contractStartDateRef.touched)) {
+            <div>
+              @if (editForm.get('contractStartDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contractEndDate" jhiTranslate="bussManagerApp.customer.contractEndDate"
+            >Contract End Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_contractEndDate"
+              data-cy="contractEndDate"
+              type="text"
+              class="form-control"
+              name="contractEndDate"
+              ngbDatepicker
+              #contractEndDateDp="ngbDatepicker"
+              formControlName="contractEndDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="contractEndDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_company" jhiTranslate="bussManagerApp.customer.company">Company</label>
+          <select
+            class="form-control"
+            id="field_company"
+            data-cy="company"
+            name="company"
+            formControlName="company"
+            [compareWith]="compareCompany"
+          >
+            <option [ngValue]="null"></option>
+            @for (companyOption of companiesSharedCollection; track $index) {
+              <option [ngValue]="companyOption">{{ companyOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (employee(); as employeeRef) {
+      <div>
+        <h2 data-cy="employeeDetailsHeading"><span jhiTranslate="bussManagerApp.employee.detail.title">Employee</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">Código</span></dt>
+          <dd>
+            <span>{{ employeeRef.id }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'bussManagerApp.employee.help.firstName' | translate" jhiTranslate="bussManagerApp.employee.firstName"
+              >First Name</span
+            >
+          </dt>
+          <dd>
+            <span>{{ employeeRef.firstName }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.lastName">Last Name</span></dt>
+          <dd>
+            <span>{{ employeeRef.lastName }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.email">Email</span></dt>
+          <dd>
+            <span>{{ employeeRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.phoneNumber">Phone Number</span></dt>
+          <dd>
+            <span>{{ employeeRef.phoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.startDate">Start Date</span></dt>
+          <dd>
+            <span>{{ employeeRef.startDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ employeeRef.endDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.salary">Salary</span></dt>
+          <dd>
+            <span>{{ employeeRef.salary }}</span>
+          </dd>
+          <dt><span jhiTranslate="bussManagerApp.employee.company">Company</span></dt>
+          <dd>
+            @if (employee()!.company) {
+              <div>
+                <a [routerLink]="['/company', employee()!.company?.id, 'view']">{{ employeeRef.company?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+        </button>
+
+        <button type="button" [routerLink]="['/employee', employeeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

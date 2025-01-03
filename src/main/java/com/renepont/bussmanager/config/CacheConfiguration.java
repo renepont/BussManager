@@ -50,6 +50,13 @@ public class CacheConfiguration {
             createCache(cm, com.renepont.bussmanager.domain.User.class.getName());
             createCache(cm, com.renepont.bussmanager.domain.Authority.class.getName());
             createCache(cm, com.renepont.bussmanager.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.renepont.bussmanager.domain.Company.class.getName());
+            createCache(cm, com.renepont.bussmanager.domain.Company.class.getName() + ".employees");
+            createCache(cm, com.renepont.bussmanager.domain.Company.class.getName() + ".transactions");
+            createCache(cm, com.renepont.bussmanager.domain.Company.class.getName() + ".customers");
+            createCache(cm, com.renepont.bussmanager.domain.Transaction.class.getName());
+            createCache(cm, com.renepont.bussmanager.domain.Employee.class.getName());
+            createCache(cm, com.renepont.bussmanager.domain.Customer.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
